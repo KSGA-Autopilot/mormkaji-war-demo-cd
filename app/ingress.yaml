@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mormkaji-war-demo-ingress
+  namespace: mormkaji
+spec:
+  tls:
+    - hosts:
+        - autopilot17.hanyeaktong.site
+      secretName: autopilot17-hanyeaktong-site-cert
+  rules:
+    - host: autopilot17.hanyeaktong.site
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: mormkaji-war-demo-svc
+                port:
+                  number: 4000
